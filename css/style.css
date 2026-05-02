@@ -1,0 +1,80 @@
+/* Reset básico para que quede prolijo */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #121212; /* Fondo oscuro nivel Hacker */
+  color: #ffffff;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.contenedor {
+  text-align: center;
+}
+
+h1 {
+  color: #00ffcc;
+  margin-bottom: 5px;
+}
+
+p {
+  color: #aaaaaa;
+  margin-bottom: 30px;
+}
+
+/* =======================================================
+   EL TABLERO (Magia pura con CSS Grid)
+======================================================= */
+#tablero {
+  display: grid;
+  /* Creamos 4 columnas de 100px exactos */
+  grid-template-columns: repeat(4, 100px);
+  gap: 15px; /* Espacio entre las cartas */
+  justify-content: center;
+}
+
+/* =======================================================
+   LAS CARTAS (Estados visuales)
+======================================================= */
+.carta {
+  width: 100px;
+  height: 100px;
+  background-color: #2a2a2a; /* Color de la carta boca abajo */
+  border: 2px solid #00ffcc;
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.5rem; /* Tamaño gigante para el emoji */
+  cursor: pointer;
+  user-select: none; /* Evita que seleccionen el texto por error */
+  transition: all 0.3s ease; /* Animación suave al clickear */
+}
+
+/* Efecto hover para que sepan que es clickeable */
+.carta:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 255, 204, 0.3);
+}
+
+/* ESTADO 1: Cuando JavaScript le agrega la clase 'volteada' */
+.carta.volteada {
+  background-color: #ffffff; /* Se pone blanca para resaltar el emoji */
+  border-color: #ffffff;
+  transform: scale(1.05); /* Se agranda un poquito */
+}
+
+/* ESTADO 2: Cuando JavaScript detecta que hicieron par */
+.carta.resuelta {
+  background-color: #00ffcc;
+  border-color: #00ffcc;
+  pointer-events: none; /* ¡Clave! Bloquea el click para que no hagan trampa */
+  opacity: 0.7; /* Se pone un poco transparente para que pase a segundo plano */
+}
